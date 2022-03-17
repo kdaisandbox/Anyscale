@@ -7,7 +7,7 @@ from darts.models import (
     AutoARIMA,
     LightGBMModel,
 )
-from fbprophet import Prophet
+from prophet import Prophet
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_absolute_percentage_error
 
