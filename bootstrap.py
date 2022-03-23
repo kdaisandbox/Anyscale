@@ -360,7 +360,7 @@ def main():
             env=apt_get_adjusted_env,
         )
 
-        run_subprocess(["alias python3=/usr/bin/python3.8"])
+        #run_subprocess(["alias python3=/usr/bin/python3.8"])
         logger.info("Setting up virtual environment at {}".format(hub_prefix))
         os.makedirs(hub_prefix, exist_ok=True)
         run_subprocess(["python3", "-m", "venv", hub_prefix])
