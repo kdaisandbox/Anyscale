@@ -5,7 +5,7 @@ import yaml
 def load_config(file_name):
 
     # Set project path as two levels top
-    project_root = Path(__file__).resolve().parents[2]
+    project_root = Path(__file__).resolve().parents[1]
 
     config_file = project_root / 'configs' / file_name
 
