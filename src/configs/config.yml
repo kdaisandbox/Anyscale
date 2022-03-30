@@ -1,0 +1,26 @@
+general_information:
+  outputs_folder: ../outputs
+
+preprocessing:
+    IMPUTATION_LIMIT: 7
+    RESAMPLING_FREQUENCY: "d"
+
+model_development:
+    prediction_horizon: 30
+    threshold1: 80
+    threshold2: 90
+    threshold3: 95
+    threshold4: 98
+    threshold5: 100
+    prophet:
+        prediction_frequency: "d"
+    lgbm:
+        prediction_horizon: 1
+        autoreg_lag_30days_training: [-15,-14,-13,-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1]
+        autoreg_lag_14days_training: [-7,-6,-5,-4,-3,-2,-1]
+    autoarima:
+        START_P: 1
+        START_Q: 7
+        MAX_P: 1
+        MAX_Q: 7
+        prediction_frequency: "d"
