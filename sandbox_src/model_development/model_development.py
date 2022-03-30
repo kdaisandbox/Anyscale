@@ -5,16 +5,16 @@ from darts.models import (
 )
 import numpy as np
 #from unidecode import unidecode
-from sktime.forecasting.compose import make_reduction, TransformedTargetForecaster
-from sktime.forecasting.model_selection import ExpandingWindowSplitter, ForecastingGridSearchCV
-import lightgbm as lgb
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error
-from sklearn.metrics import mean_absolute_percentage_error
-from sktime.forecasting.compose import TransformedTargetForecaster
-from sktime.transformations.series.detrend import Detrender
-from sktime.forecasting.trend import PolynomialTrendForecaster
-from sktime.transformations.series.detrend import Deseasonalizer
+#from sktime.forecasting.compose import make_reduction, TransformedTargetForecaster
+#from sktime.forecasting.model_selection import ExpandingWindowSplitter, ForecastingGridSearchCV
+#import lightgbm as lgb
+#from sklearn.linear_model import LinearRegression
+#from sklearn.metrics import mean_absolute_error
+#from sklearn.metrics import mean_absolute_percentage_error
+#from sktime.forecasting.compose import TransformedTargetForecaster
+#from sktime.transformations.series.detrend import Detrender
+#from sktime.forecasting.trend import PolynomialTrendForecaster
+#from sktime.transformations.series.detrend import Deseasonalizer
 
 class ModelDevelopment:
     
