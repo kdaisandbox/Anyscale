@@ -4,17 +4,7 @@ from darts.models import (
     LightGBMModel
 )
 import numpy as np
-#from unidecode import unidecode
-#from sktime.forecasting.compose import make_reduction, TransformedTargetForecaster
-#from sktime.forecasting.model_selection import ExpandingWindowSplitter, ForecastingGridSearchCV
-#import lightgbm as lgb
-#from sklearn.linear_model import LinearRegression
-#from sklearn.metrics import mean_absolute_error
-#from sklearn.metrics import mean_absolute_percentage_error
-#from sktime.forecasting.compose import TransformedTargetForecaster
-#from sktime.transformations.series.detrend import Detrender
-#from sktime.forecasting.trend import PolynomialTrendForecaster
-#from sktime.transformations.series.detrend import Deseasonalizer
+
 
 class ModelDevelopment:
     
@@ -31,42 +21,7 @@ class ModelDevelopment:
         self.PREDICTION_FREQUENCY_ARIMA = config['model_development']['autoarima']['prediction_frequency']
         
 
-    def check_downtrend(self, train_set):
-        X = (np.arange(30)+1).reshape(-1, 1)
-        y = train_set
-        lin_reg = LinearRegression()
-        lin_reg.fit(X,y)
-        pred = lin_reg.predict(np.array([31,32]).reshape(-1, 1))
-       
-        return pred[0] > pred[-1]
-    
-
-    def create_forecaster_w_detrender_deseasonalizer(self, sp, degree=1):
-        # creating forecaster with LightGBM
-        regressor = lgb.LGBMRegressor()
-        forecaster = TransformedTargetForecaster(
-            [   # ("deseasonalize", Deseasonalizer(model="additive", sp=sp)),
-                ("detrend", Detrender(forecaster=PolynomialTrendForecaster(degree=degree))),
-                (
-                    "forecast",
-                    make_reduction(regressor, strategy="recursive"),
-                ),
-            ]
-        )
-
-        return forecaster
-
-
-    def find_detrend_and_deseasonality(self, train_set, param_grid):
-        cv = ExpandingWindowSplitter(initial_window=int(len(train_set) * 0.8))
-        forecaster = self.create_forecaster_w_detrender_deseasonalizer(5, 5)
-        gscv = ForecastingGridSearchCV(
-            forecaster, strategy="refit", cv=cv, param_grid=param_grid
-        )
-        gscv.fit(train_set)
-        return gscv.best_params_, gscv
   
-    
     def predict_arima(self, train):
         """
         Makes 30 days of prediction using Auto-ARIMA

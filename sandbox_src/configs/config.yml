@@ -1,5 +1,42 @@
-general_information:
-  outputs_folder: ../outputs
+ray:
+    number_of_disks_per_task: 5
+    number_of_disks_per_db_insert: 150
+
+data_load:
+    username: "scanalytics"
+    password: "KS01su34@**"
+    sleep_duration: 900
+    database_name: "DWH"
+    table_name: "FactCIDiskUtilization"
+    jar_path: "jtds-1.3.1.jar"
+    driver_name: "net.sourceforge.jtds.jdbc.Driver"
+    connection_url: "jdbc:jtds:sqlserver://195.87.213.180:1433"
+    domain: "KSNET"
+    patience: 24
+
+model_store:
+    username: "scanalytics"
+    password: "KS01su34@**"
+    database_name: "Analytics"
+    table_name: "StgModelMapping"
+    jar_path: "jtds-1.3.1.jar"
+    driver_name: "net.sourceforge.jtds.jdbc.Driver"
+    connection_url: "jdbc:jtds:sqlserver://195.87.213.180:1433"
+    domain: "KSNET"
+    schema: "DiskAnalytics"
+
+model_load:
+    username: "scanalytics"
+    password: "KS01su34@**"
+    database_name: "Analytics"
+    table_name: "ModelMappingHistory"
+    model_store_table_name: "Model"
+    jar_path: "jtds-1.3.1.jar"
+    driver_name: "net.sourceforge.jtds.jdbc.Driver"
+    connection_url: "jdbc:jtds:sqlserver://195.87.213.180:1433"
+    domain: "KSNET"
+    schema: "DiskAnalytics"
+    batch_size: 1000
 
 preprocessing:
     IMPUTATION_LIMIT: 7
@@ -24,3 +61,24 @@ model_development:
         MAX_P: 1
         MAX_Q: 7
         prediction_frequency: "d"
+
+data_send:
+    username: "scanalytics"
+    password: "KS01su34@**"
+    database_name: "Analytics"
+    table_name: "ModelPrediction"
+    prediction_data_table_name: "StgModeLDiskUtiPrediction"
+    model_mapping7_table_name: "StgModelMapping_7"
+    model_mapping30_table_name: "StgModelMapping_30"
+    model_mapping90_table_name: "StgModelMapping_90"
+    jar_path: "jtds-1.3.1.jar"
+    driver_name: "net.sourceforge.jtds.jdbc.Driver"
+    connection_url: "jdbc:jtds:sqlserver://195.87.213.180:1433"
+    domain: "KSNET"
+    schema: "DiskAnalytics"
+    batch_size: 1000
+        
+general_information:
+  asset_information: ../data/plc_asset_information.xlsx
+  date_column: DATE
+  outputs_folder: ../outputs
