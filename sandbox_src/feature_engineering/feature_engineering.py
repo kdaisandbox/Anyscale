@@ -153,10 +153,13 @@ class ClusterFeatureEngine:
         diskname = disk_series.name
 
         if len(disk_series) > 0:
-
-            disk_series = disk_series.round(decimals=5)
-            disk_series = disk_series.iloc[-75:] 
-
+            try:
+                disk_series = disk_series.round(decimals=5)
+                disk_series = disk_series.iloc[-75:] 
+            except:
+                print(disk_series)
+                print(disk_series.describe())
+                
             # Iterate over day lags (last 7 or 30days)
             for j in range(NUMBER_OF_DIFFERENT_LAGS):
 
